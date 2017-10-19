@@ -33,7 +33,7 @@ namespace OpenNos.GameObject.Event
             if (useTimer)
             {
                 ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_MINUTES"), 5), 0));
-              /*ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_MINUTES"), 5), 1));
+                ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_MINUTES"), 5), 1));
                 Thread.Sleep(4 * 60 * 1000);
                 ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_MINUTES"), 1), 0));
                 ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_MINUTES"), 1), 1));
@@ -43,7 +43,7 @@ namespace OpenNos.GameObject.Event
                 Thread.Sleep(20 * 1000);
                 ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_SECONDS"), 10), 0));
                 ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(string.Format(Language.Instance.GetMessageFromKey("INSTANTBATTLE_SECONDS"), 10), 1));
-                Thread.Sleep(10 * 1000); */
+                Thread.Sleep(10 * 1000);
             }
             ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(Language.Instance.GetMessageFromKey("INSTANTBATTLE_STARTED"), 1));
             ServerManager.Instance.Broadcast($"qnaml 1 #guri^506 {Language.Instance.GetMessageFromKey("INSTANTBATTLE_QUESTION")}");
@@ -105,13 +105,13 @@ namespace OpenNos.GameObject.Event
             {
                 ServerManager.Instance.StartedEvents.Remove(EventType.INSTANTBATTLE);
                 Thread.Sleep(10 * 1000);
-               /* if (mapinstance.Item1.Sessions.Count() < 3)
+                if (mapinstance.Item1.Sessions.Count() < 3)
                 {
                     mapinstance.Item1.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(Language.Instance.GetMessageFromKey("INSTANTBATTLE_NOT_ENOUGH_PLAYERS"), 0));
                     EventHelper.Instance.ScheduleEvent(TimeSpan.FromSeconds(5), new EventContainer(mapinstance.Item1, EventActionType.DISPOSEMAP, null));
                 }
                 else
-                { */
+                { 
                     Observable.Timer(TimeSpan.FromMinutes(12)).Subscribe(X =>
                     {
                         for (int d = 0; d < 180; d++)
@@ -193,7 +193,7 @@ namespace OpenNos.GameObject.Event
                     }
                     EventHelper.Instance.ScheduleEvent(TimeSpan.FromSeconds(650),
                         new EventContainer(mapinstance.Item1, EventActionType.SPAWNMONSTERS, GetInstantBattleMonster(mapinstance.Item1.Map, mapinstance.Item2, 4)));
-               // }
+                }
             }
         }
 

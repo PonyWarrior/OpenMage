@@ -31,6 +31,7 @@ namespace OpenNos.GameObject.CommandPackets
 
         public override string ToString()
         {
+            // idk wtf this is used for so just leaving this
             return $"CreateShell Command";
         }
 
