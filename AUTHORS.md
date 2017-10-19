@@ -8,7 +8,11 @@ genyx
 MasterDomino  
 Martazza  
 KrisYiu  
-Uppermost  
+Uppermost
+Blowa  
+Elendan  
+Syl  
+Kraken    
 
 #Helpers
 juhgiyo for his JPS+ algorithm  
