@@ -1106,13 +1106,11 @@ namespace OpenNos.Handler
             }
             if (ConfigurationManager.AppSettings["WorldInformation"].ToLower() == "true")
             {
-                Session.SendPacket(Session.Character.GenerateSay("----------[NosWings : Reborn]----------", 10));
-                Session.SendPacket(Session.Character.GenerateSay($"Xp : {ServerManager.Instance.XPRate}", 11));
+                Session.SendPacket(Session.Character.GenerateSay("----------[OpenMage]----------", 10));
+                Session.SendPacket(Session.Character.GenerateSay($"Exp : {ServerManager.Instance.XPRate}", 11));
                 Session.SendPacket(Session.Character.GenerateSay($"Drop : {ServerManager.Instance.DropRate}", 11));
                 Session.SendPacket(Session.Character.GenerateSay($"Or : {ServerManager.Instance.GoldRate}", 11));
-                Session.SendPacket(Session.Character.GenerateSay($"XpFée : {ServerManager.Instance.FairyXpRate}", 11));
-                Session.SendPacket(Session.Character.GenerateSay($"Discord : http://discord.noswings.fr", 11));
-                Session.SendPacket(Session.Character.GenerateSay($"Site : https://noswings.fr/", 11));
+                Session.SendPacket(Session.Character.GenerateSay($"FairyExp : {ServerManager.Instance.FairyXpRate}", 11));
                 Session.SendPacket(Session.Character.GenerateSay("-----------------------------------------------", 10));
             }
             Session.Character.LoadSpeed();

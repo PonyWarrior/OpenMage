@@ -599,7 +599,7 @@ namespace OpenNos.Handler
                     }
 
                     // initialize and rarify
-                    item.Rarify(null);
+                    item.Rarify(Session, item: item);
                 }
 
                 if (mapItem.ItemVNum != 1046)

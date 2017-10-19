@@ -264,7 +264,7 @@ namespace OpenNos.GameObject
         }
 
         public void RarifyItem(ClientSession session, RarifyMode mode, RarifyProtection protection,
-            bool isCommand = false)
+            bool isCommand = false, bool isMonsterDrop = false, MonsterMapItem item = null)
         {
             double raren2 = 80;
             double raren1 = 70;
@@ -515,6 +515,15 @@ namespace OpenNos.GameObject
                     return;
                 }
             }
+            if (mode == RarifyMode.Drop && Rare > 0 && isMonsterDrop && session != null)
+            {
+                MapItem mapItem = session.CurrentMapInstance.DroppedList[item.TransportId];
+                ItemInstance i = mapItem.GetItemInstance();
+                if (i != null)
+                {
+                    SetRandomShell(i, session);
+                }
+            }
             if (mode == RarifyMode.Drop || session == null)
             {
                 return;
@@ -524,6 +533,18 @@ namespace OpenNos.GameObject
             {
                 session.SendPacket(inventoryb.GenerateInventoryAdd());
             }
+        }
+
+        public void SetRandomShell(ItemInstance i, ClientSession session)
+        {
+            List<EquipmentOptionDTO> shellOptions = ShellGeneratorHelper.Instance.GenerateShell(6, i.Rare, i.Item.LevelMinimum);
+            WearableInstance t = (WearableInstance)i;
+            foreach (EquipmentOptionDTO x in shellOptions)
+            {
+                t.EquipmentOptions.Add(x);
+            }
+            t.BoundCharacterId = session.Character.CharacterId;
+            t.ShellRarity = i.Rare;
         }
 
         public void SetRarityPoint()

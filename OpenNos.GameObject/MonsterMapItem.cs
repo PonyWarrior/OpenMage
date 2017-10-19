@@ -56,7 +56,7 @@ namespace OpenNos.GameObject
             return _itemInstance;
         }
 
-        public void Rarify(ClientSession session)
+        public void Rarify(ClientSession session, MonsterMapItem item = null)
         {
             ItemInstance instance = GetItemInstance();
             if (instance.Item.Type != InventoryType.Equipment || (instance.Item.ItemType != ItemType.Weapon && instance.Item.ItemType != ItemType.Armor))
@@ -64,7 +64,7 @@ namespace OpenNos.GameObject
                 return;
             }
             WearableInstance wearableInstance = instance as WearableInstance;
-            wearableInstance?.RarifyItem(session, RarifyMode.Drop, RarifyProtection.None);
+            wearableInstance?.RarifyItem(session, RarifyMode.Drop, RarifyProtection.None, isMonsterDrop: true, item: item);
         }
 
         #endregion

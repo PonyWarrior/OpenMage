@@ -222,7 +222,6 @@ namespace OpenNos.GameObject
                         break;
                     }
                 }
-
                 MonsterMapItem droppedItem = new MonsterMapItem(localMapX, localMapY, drop.ItemVNum, drop.Amount, owner ?? -1);
                 DroppedList[droppedItem.TransportId] = droppedItem;
                 Broadcast(
