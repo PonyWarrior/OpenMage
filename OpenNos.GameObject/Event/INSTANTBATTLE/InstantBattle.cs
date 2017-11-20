@@ -48,7 +48,7 @@ namespace OpenNos.GameObject.Event
             ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(Language.Instance.GetMessageFromKey("INSTANTBATTLE_STARTED"), 1));
             ServerManager.Instance.Broadcast($"qnaml 1 #guri^506 {Language.Instance.GetMessageFromKey("INSTANTBATTLE_QUESTION")}");
             ServerManager.Instance.EventInWaiting = true;
-            Thread.Sleep(5 * 1000);
+            Thread.Sleep(30 * 1000);
             ServerManager.Instance.Broadcast(UserInterfaceHelper.Instance.GenerateMsg(Language.Instance.GetMessageFromKey("INSTANTBATTLE_STARTED"), 1));
             ServerManager.Instance.Sessions.Where(s => s.Character != null && !s.Character.IsWaitingForEvent).ToList().ForEach(s => s.SendPacket("esf"));
             ServerManager.Instance.EventInWaiting = false;
