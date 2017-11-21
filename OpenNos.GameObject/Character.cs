@@ -3727,10 +3727,22 @@ namespace OpenNos.GameObject
             int weaponUpgrade = 0;
             int secondaryUpgrade = 0;
             int armorUpgrade = 0;
+            WearableInstance mainWeapon = null;
+            WearableInstance secondaryWeapon = null;
+            WearableInstance armor = null;
 
-            WearableInstance mainWeapon = Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.MainWeapon, InventoryType.Wear);
-            WearableInstance secondaryWeapon = Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.SecondaryWeapon, InventoryType.Wear);
-            WearableInstance armor = Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.Armor, InventoryType.Wear);
+            if (Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.MainWeapon, InventoryType.Wear) != null)
+            {
+                mainWeapon = Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.MainWeapon, InventoryType.Wear);
+            }
+            if (Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.SecondaryWeapon, InventoryType.Wear) != null)
+            {
+                secondaryWeapon = Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.SecondaryWeapon, InventoryType.Wear);
+            }
+            if (Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.Armor, InventoryType.Wear) != null)
+            {
+                armor = Inventory?.LoadBySlotAndType<WearableInstance>((byte)EquipmentType.Armor, InventoryType.Wear);
+            }
 
             MinHit = CharacterHelper.Instance.MinHit(Class, Level);
             MaxHit = CharacterHelper.Instance.MaxHit(Class, Level);

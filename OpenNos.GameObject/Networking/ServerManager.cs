@@ -545,6 +545,24 @@ namespace OpenNos.GameObject
                 session.CurrentMapInstance = session.Character.MapInstance;
                 session.CurrentMapInstance.RegisterSession(session);
 
+                long? familyId = DAOFactory.FamilyCharacterDAO.LoadByCharacterId(session.Character.CharacterId)?.FamilyId;
+                if (familyId != null)
+                {
+                    session.Character.Family = Instance.FamilyList.FirstOrDefault(s => s.FamilyId == familyId.Value);
+                }
+                if (session.Character.Family != null && session.Character.FamilyCharacter != null)
+                {
+                    session.SendPacket(session.Character.GenerateGInfo());
+                    session.SendPackets(session.Character.GetFamilyHistory());
+                    session.SendPacket(session.Character.GenerateFamilyMember());
+                    session.SendPacket(session.Character.GenerateFamilyMemberMessage());
+                    session.SendPacket(session.Character.GenerateFamilyMemberExp());
+                    if (!string.IsNullOrWhiteSpace(session.Character.Family.FamilyMessage))
+                    {
+                        session.SendPacket(UserInterfaceHelper.Instance.GenerateInfo("--- Family Message ---\n" + session.Character.Family.FamilyMessage));
+                    }
+                }
+                // Need to do family here and not in basicpackethandler or family will be null in some functions because of the execution order
                 session.SendPacket(session.Character.GenerateCInfo());
                 session.SendPacket(session.Character.GenerateCMode());
                 session.SendPacket(session.Character.GenerateEq());
