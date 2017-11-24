@@ -2203,8 +2203,13 @@ namespace OpenNos.GameObject
 
         public string GenerateGidx()
         {
-            return Family != null ? $"gidx 1 {CharacterId} {Family.FamilyId} {Family.Name}({Language.Instance.GetMessageFromKey(Family.FamilyCharacters.FirstOrDefault(s => s.CharacterId == CharacterId)?.Authority.ToString().ToUpper())}) {Family.FamilyLevel}" : $"gidx 1 {CharacterId} -1 - 0";
-        }
+			string nullCheck = "Null";
+			if (Family != null && Family.FamilyCharacters.Count > 0)
+			{
+				nullCheck = Language.Instance.GetMessageFromKey(Family.FamilyCharacters.FirstOrDefault(s => s.CharacterId == CharacterId)?.Authority.ToString().ToUpper());
+			}
+			return Family != null ? $"gidx 1 {CharacterId} {Family.FamilyId} {Family.Name}({nullCheck}) {Family.FamilyLevel}" : $"gidx 1 {CharacterId} -1 - 0";
+		}
 
         public string GenerateGInfo()
         {
@@ -5768,7 +5773,6 @@ namespace OpenNos.GameObject
             }
 
             Session.SendPacket(bf.RemainingTime == -1 ? $"vb {bf.Card.CardId} 1 -1" : $"vb {bf.Card.CardId} 1 {bf.RemainingTime * 10}");
-            Session.SendPacket(Session.Character.GenerateSay(string.Format($"You are under the effect of {bf.Card.Name}"), 12));
         }
 
         public void AddBuff(Buff indicator, bool notify = true)
@@ -5787,7 +5791,6 @@ namespace OpenNos.GameObject
             Buff.Add(indicator);
 
             Session.SendPacket($"bf 1 {Session.Character.CharacterId} 0.{indicator.Card.CardId}.{indicator.RemainingTime} {Level}");
-            Session.SendPacket(Session.Character.GenerateSay(string.Format($"You are under the effect of {indicator.Card.Name}"), 20));
 
             indicator.Card.BCards.ForEach(c => c.ApplyBCards(Session.Character));
 
