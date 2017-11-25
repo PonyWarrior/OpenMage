@@ -125,7 +125,7 @@ namespace OpenNos.GameObject
                                     session.SendPacket(UserInterfaceHelper.Instance.GenerateMsg(Language.Instance.GetMessageFromKey("SHELL_RARITY_TOO_HIGH"), 0));
                                     return;
                                 }
-                                if (eq.Item.LevelMinimum < shell.Upgrade)
+                                if (eq.Item.LevelMinimum < shell.Upgrade && !eq.Item.IsHeroic)
                                 {
                                     // SHELL LEVEL TOO HIGH
                                     session.SendPacket(UserInterfaceHelper.Instance.GenerateMsg(Language.Instance.GetMessageFromKey("SHELL_LEVEL_TOO_HIGH"), 0));
